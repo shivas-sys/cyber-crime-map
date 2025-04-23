@@ -1,0 +1,52 @@
+/* Add Remix icon font support from CDN */
+@import url('https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Custom scrollbar styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 20px;
+}
+
+/* Sidebar active menu item style */
+.sidebar-menu a.active {
+  background-color: rgba(79, 70, 229, 0.1);
+  border-left: 3px solid #4f46e5;
+}
+
+/* Heatmap gradient for visualizations */
+.heatmap-gradient {
+  background: linear-gradient(to right, #10b981, #fbbf24, #ef4444);
+}
+
+/* Map container style */
+.map-container {
+  min-height: 500px;
+}
+
+/* Make sure Leaflet containers are properly sized */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+}

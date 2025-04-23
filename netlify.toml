@@ -1,0 +1,44 @@
+# Netlify configuration for static deployment
+
+[build]
+  # Directory with the built files
+  publish = "dist/public"
+  # Build command
+  command = "./build-static.sh"
+
+# Handle SPA routing by redirecting all routes to index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Set environment variables for the static deployment
+[build.environment]
+  VITE_STATIC_DEPLOYMENT = "true"
+
+# Configure headers
+[[headers]]
+  # Define headers for all files
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' unpkg.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: unpkg.com; connect-src 'self'; font-src 'self'; object-src 'none'; media-src 'self'; frame-src 'self'; worker-src 'self'; manifest-src 'self';"
+
+# Optimize asset caching
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
